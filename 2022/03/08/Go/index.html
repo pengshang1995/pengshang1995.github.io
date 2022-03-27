@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="GoGo协程简单用法对于IO密集型计算可以采用go协程进行处理，使用这三个协程的操作，同时处理可以有效降低耗时。 go学习之- cas的理解https:&#x2F;&#x2F;blog.csdn.net&#x2F;chenxun_2010&#x2F;article&#x2F;details&#x2F;103598252 make和new的区别 new 和 make 都用于分配内存； new 和 make 都是在堆上分配内存； new 对指针类型分配内存，返">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/03/08/Go/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="GoGo协程简单用法对于IO密集型计算可以采用go协程进行处理，使用这三个协程的操作，同时处理可以有效降低耗时。 go学习之- cas的理解https:&#x2F;&#x2F;blog.csdn.net&#x2F;chenxun_2010&#x2F;article&#x2F;details&#x2F;103598252 make和new的区别 new 和 make 都用于分配内存； new 和 make 都是在堆上分配内存； new 对指针类型分配内存，返">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-08T10:47:20.000Z">
+<meta property="article:modified_time" content="2022-03-08T10:47:20.000Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Go" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/08/Go/" class="article-date">
+  <time class="dt-published" datetime="2022-03-08T10:47:20.000Z" itemprop="datePublished">2022-03-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Go"><a href="#Go" class="headerlink" title="Go"></a>Go</h1><h4 id="Go协程简单用法"><a href="#Go协程简单用法" class="headerlink" title="Go协程简单用法"></a>Go协程简单用法</h4><p>对于IO密集型计算可以采用go协程进行处理，使用这三个协程的操作，同时处理可以有效降低耗时。</p>
+<h4 id="go学习之-cas的理解"><a href="#go学习之-cas的理解" class="headerlink" title="go学习之- cas的理解"></a>go学习之- cas的理解</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/chenxun_2010/article/details/103598252">https://blog.csdn.net/chenxun_2010/article/details/103598252</a></p>
+<h4 id="make和new的区别"><a href="#make和new的区别" class="headerlink" title="make和new的区别"></a>make和new的区别</h4><ol>
+<li>new 和 make 都用于分配内存；</li>
+<li>new 和 make 都是在堆上分配内存；</li>
+<li>new 对指针类型分配内存，返回值是分配类型的指针，new不能直接对 slice 、map、channel 分配内存；</li>
+<li>make 仅用于 slice、map和 channel 的初始化，返回值为类型本身，而不是指针；</li>
+</ol>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/08/Go/" data-id="cl18jc4am0000uz9ke0pz4i8w" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/03/25/%E6%95%B0%E6%8D%AE%E5%BA%93/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/03/06/%E6%9E%B6%E6%9E%84/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/27/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/25/%E6%95%B0%E6%8D%AE%E5%BA%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/08/Go/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/06/%E6%9E%B6%E6%9E%84/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/06/Redis/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

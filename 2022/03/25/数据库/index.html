@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="数据库Mysql 四大特性(ACID)原子性事务必须是原子工作单元；对于其数据修改，要么全都执行，要么全都不执行。通常，与某个事务关联的操作具有共同的目标，并且是相互依赖的。如果系统只执行这些操作的一个子集，则可能会破坏事务的总体目标。原子性消除了系统处理操作子集的可能性。 一致性事务在完成时，必须使所有的数据都保持一致状态。在相关数据库中，所有规则都必须应用于事务的修改，以保持所有数据的完整性。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/03/25/%E6%95%B0%E6%8D%AE%E5%BA%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="数据库Mysql 四大特性(ACID)原子性事务必须是原子工作单元；对于其数据修改，要么全都执行，要么全都不执行。通常，与某个事务关联的操作具有共同的目标，并且是相互依赖的。如果系统只执行这些操作的一个子集，则可能会破坏事务的总体目标。原子性消除了系统处理操作子集的可能性。 一致性事务在完成时，必须使所有的数据都保持一致状态。在相关数据库中，所有规则都必须应用于事务的修改，以保持所有数据的完整性。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://ps-blog.oss-cn-beijing.aliyuncs.com/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_529f4c91-2648-4c6b-bea8-adb7bd4d37d0.png">
+<meta property="og:image" content="http://example.com/media/16458424268425/16459310981194.jpg">
+<meta property="og:image" content="http://example.com/media/16458424268425/16459319097177.jpg">
+<meta property="og:image" content="http://example.com/media/16458424268425/16459319787856.jpg">
+<meta property="article:published_time" content="2022-03-25T07:50:32.000Z">
+<meta property="article:modified_time" content="2022-03-25T07:50:32.000Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ps-blog.oss-cn-beijing.aliyuncs.com/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_529f4c91-2648-4c6b-bea8-adb7bd4d37d0.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-数据库" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/25/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="article-date">
+  <time class="dt-published" datetime="2022-03-25T07:50:32.000Z" itemprop="datePublished">2022-03-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><h3 id="Mysql-四大特性-ACID"><a href="#Mysql-四大特性-ACID" class="headerlink" title="Mysql 四大特性(ACID)"></a>Mysql 四大特性(ACID)</h3><h4 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h4><p>事务必须是原子工作单元；对于其数据修改，要么全都执行，要么全都不执行。通常，与某个事务关联的操作具有共同的目标，并且是相互依赖的。如果系统只执行这些操作的一个子集，则可能会破坏事务的总体目标。原子性消除了系统处理操作子集的可能性。</p>
+<h4 id="一致性"><a href="#一致性" class="headerlink" title="一致性"></a>一致性</h4><p>事务在完成时，必须使所有的数据都保持一致状态。在相关数据库中，所有规则都必须应用于事务的修改，以保持所有数据的完整性。事务结束时，所有的内部数据结构（如 B 树索引或双向链表）都必须是正确的。某些维护一致性的责任由应用程序开发人员承担，他们必须确保应用程序已强制所有已知的完整性约束。例如，当开发用于转帐的应用程序时，应避免在转帐过程中任意移动小数点。</p>
+<h4 id="隔离性"><a href="#隔离性" class="headerlink" title="隔离性"></a>隔离性</h4><p>由并发事务所作的修改必须与任何其它并发事务所作的修改隔离。事务查看数据时数据所处的状态，要么是另一并发事务修改它之前的状态，要么是另一事务修改它之后的状态，事务不会查看中间状态的数据。这称为可串行性，因为它能够重新装载起始数据，并且重播一系列事务，以使数据结束时的状态与原始事务执行的状态相同。当事务可序列化时将获得最高的隔离级别。在此级别上，从一组可并行执行的事务获得的结果与通过连续运行每个事务所获得的结果相同。由于高度隔离会限制可并行执行的事务数，所以一些应用程序降低隔离级别以换取更大的吞吐量。</p>
+<h4 id="持久性"><a href="#持久性" class="headerlink" title="持久性"></a>持久性</h4><p>事务完成之后，它对于系统的影响是永久性的。该修改即使出现致命的系统故障也将一直保持。 </p>
+<h3 id="隔离级别"><a href="#隔离级别" class="headerlink" title="隔离级别"></a>隔离级别</h3><h4 id="Read-Uncommitted（读取未提交内容）"><a href="#Read-Uncommitted（读取未提交内容）" class="headerlink" title="Read Uncommitted（读取未提交内容）"></a>Read Uncommitted（读取未提交内容）</h4><p> 在该隔离级别，所有事务都可以看到其他未提交事务的执行结果。本隔离级别很少用于实际应用，因为它的性能也不比其他级别好多少。读取未提交的数据，也被称之为脏读（Dirty Read）。</p>
+<h4 id="Read-Committed（读取提交内容）"><a href="#Read-Committed（读取提交内容）" class="headerlink" title="Read Committed（读取提交内容）"></a>Read Committed（读取提交内容）</h4><p>这是大多数数据库系统的默认隔离级别（但不是MySQL默认的）。它满足了隔离的简单定义：一个事务只能看见已经提交事务所做的改变。这种隔离级别 也支持所谓的不可重复读（Nonrepeatable Read），因为同一事务的其他实例在该实例处理其间可能会有新的commit，所以同一select可能返回不同结果。</p>
+<h4 id="Repeatable-Read（可重读）"><a href="#Repeatable-Read（可重读）" class="headerlink" title="Repeatable Read（可重读）"></a>Repeatable Read（可重读）</h4><p>这是MySQL的默认事务隔离级别，它确保同一事务的多个实例在并发读取数据时，会看到同样的数据行。不过理论上，这会导致另一个棘手的问题：幻读 （Phantom Read）。简单的说，幻读指当用户读取某一范围的数据行时，另一个事务又在该范围内插入了新行，当用户再读取该范围的数据行时，会发现有新的“幻影” 行。InnoDB和Falcon存储引擎通过多版本并发控制（MVCC，Multiversion Concurrency Control）机制解决了该问题。</p>
+<h4 id="Serializable（可串行化）"><a href="#Serializable（可串行化）" class="headerlink" title="Serializable（可串行化）"></a>Serializable（可串行化）</h4><p>这是最高的隔离级别，它通过强制事务排序，使之不可能相互冲突，从而解决幻读问题。简言之，它是在每个读的数据行上加上共享锁。在这个级别，可能导致大量的超时现象和锁竞争。</p>
+<p><strong>这四种隔离级别采取不同的锁类型来实现，若读取的是同一个数据的话，就容易发生问题。例如</strong>：</p>
+<ul>
+<li>脏读(Drity Read)：某个事务已更新一份数据，另一个事务在此时读取了同一份数据，由于某些原因，前一个RollBack了操作，则后一个事务所读取的数据就会是不正确的。</li>
+<li>不可重复读(Non-repeatable read):在一个事务的两次查询之中数据不一致，这可能是两次查询过程中间插入了一个事务更新的原有的数据。</li>
+<li>幻读(Phantom Read):在一个事务的两次查询中数据笔数不一致，例如有一个事务查询了几列(Row)数据，而另一个事务却在此时插入了新的几列数据，先前的事务在接下来的查询中，就会发现有几列数据是它先前所没有的。</li>
+</ul>
+<blockquote>
+<p> 在MySQL中，实现了这四种隔离级别，分别有可能产生问题如下所示：</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">隔离级别</th>
+<th align="center">脏读</th>
+<th align="center">不可重复读</th>
+<th align="center">幻读</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Read Uncommitted（读取未提交内容）</td>
+<td align="center">✔️</td>
+<td align="center">✔️</td>
+<td align="center">✔️</td>
+</tr>
+<tr>
+<td align="center">Read Committed（读取提交内容）</td>
+<td align="center">❌</td>
+<td align="center">✔️</td>
+<td align="center">✔️</td>
+</tr>
+<tr>
+<td align="center">Repeatable Read（可重读）</td>
+<td align="center">❌</td>
+<td align="center">❌</td>
+<td align="center">✔️</td>
+</tr>
+<tr>
+<td align="center">Serializable（可串行化）</td>
+<td align="center">❌</td>
+<td align="center">❌</td>
+<td align="center">❌</td>
+</tr>
+</tbody></table>
+<h3 id="MVCC"><a href="#MVCC" class="headerlink" title="MVCC"></a>MVCC</h3><p>MVCC，全称 Multi-Version Concurrency Control ，即多版本并发控制。MVCC 是一种并发控制的方法，一般在数据库管理系统中，实现对数据库的并发访问，在编程语言中实现事务内存。</p>
+<p>地址：<a target="_blank" rel="noopener" href="https://blog.csdn.net/SnailMann/article/details/94724197">https://blog.csdn.net/SnailMann/article/details/94724197</a></p>
+<p>什么是当前读和快照读？</p>
+<ul>
+<li><p><strong>当前读</strong><br>像 select lock in share mode (共享锁), select for update; update; insert; delete (排他锁)这些操作都是一种当前读，为什么叫当前读？就是它读取的是记录的最新版本，读取时还要保证其他并发事务不能修改当前记录，会对读取的记录进行加锁</p>
+</li>
+<li><p><strong>快照读</strong><br>像不加锁的 select 操作就是快照读，即不加锁的非阻塞读；快照读的前提是隔离级别不是串行级别，串行级别下的快照读会退化成当前读；之所以出现快照读的情况，是基于提高并发性能的考虑，快照读的实现是基于多版本并发控制，即 MVCC ,可以认为 MVCC 是行锁的一个变种，但它在很多情况下，避免了加锁操作，降低了开销；既然是基于多版本，即快照读可能读到的并不一定是数据的最新版本，而有可能是之前的历史版本</p>
+<h4 id="MVCC-能解决什么问题，好处是？"><a href="#MVCC-能解决什么问题，好处是？" class="headerlink" title="MVCC 能解决什么问题，好处是？"></a>MVCC 能解决什么问题，好处是？</h4></li>
+</ul>
+<p><strong>数据库并发场景有三种，分别为：</strong></p>
+<ul>
+<li>读-读：不存在任何问题，也不需要并发控制</li>
+<li>读-写：有线程安全问题，可能会造成事务隔离性问题，可能遇到脏读，幻读，不可重复读</li>
+<li>写-写：有线程安全问题，可能会存在更新丢失问题，比如第一类更新丢失，第二类更新丢失</li>
+</ul>
+<p><strong>好处</strong></p>
+<ul>
+<li>在并发读写数据库时，可以做到在读操作时不用阻塞写操作，写操作也不用阻塞读操作，提高了数据库并发读写的性能</li>
+<li>同时还可以解决脏读，幻读，不可重复读等事务隔离问题，但不能解决更新丢失问题</li>
+</ul>
+<h5 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h5><p>MVCC + 悲观锁<br>MVCC 解决读写冲突，悲观锁解决写写冲突<br>MVCC + 乐观锁<br>MVCC 解决读写冲突，乐观锁解决写写冲突</p>
+<h3 id="一个SQL语句的执行过程"><a href="#一个SQL语句的执行过程" class="headerlink" title="一个SQL语句的执行过程"></a>一个SQL语句的执行过程</h3><p>客户端-连接器-查询缓存-分析器-优化器-执行器-存储引擎</p>
+<h4 id="连接器"><a href="#连接器" class="headerlink" title="连接器"></a>连接器</h4><h5 id="长连接"><a href="#长连接" class="headerlink" title="长连接"></a>长连接</h5><h6 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h6><p>长连接是相对于短连接来说的。长连接指在一个连接上可以连续发送多个数据包，在连接保持期间，如果有数据包发送，需要双方发送链路检测包。mysql的长连接如果长期闲置，mysql会8小时后自动断开该连接。</p>
+<h5 id="短连接"><a href="#短连接" class="headerlink" title="短连接"></a>短连接</h5><h6 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h6><p>是指双方有数据交互时，就建立一个连接，数据发送完成后，则断开此连接，即每次连接只完成一项业务的发送。</p>
+<h5 id="短连接-VS-长连接"><a href="#短连接-VS-长连接" class="headerlink" title="短连接 VS 长连接"></a>短连接 VS 长连接</h5><ol>
+<li>建立连接的过程是复杂的，在使用中尽量减少建立连接的操作，尽量使用长连接。</li>
+<li>如果全部使用长连接，会导致Mysql内存涨的特别快，导致内存占用大，被系统强行杀掉了。</li>
+</ol>
+<h5 id="如何解决长连接"><a href="#如何解决长连接" class="headerlink" title="如何解决长连接"></a>如何解决长连接</h5><ol>
+<li>定期断开长连接</li>
+<li>执行一个比较大的操作后，通过执行mysql_reset_connection来初始化连接资源。这个过程不需要重新连接和权限验证。（mysql 5.7以上的版本）</li>
+</ol>
+<h4 id="查询缓存"><a href="#查询缓存" class="headerlink" title="查询缓存"></a>查询缓存</h4><h5 id="查询缓存是什么"><a href="#查询缓存是什么" class="headerlink" title="查询缓存是什么"></a>查询缓存是什么</h5><p>SQL文本与查询结果的映射</p>
+<h5 id="缓存条件"><a href="#缓存条件" class="headerlink" title="缓存条件"></a>缓存条件</h5><ol>
+<li>查询SQL语句完全相同（空格和大小写严格校验）</li>
+<li>开启查询缓存</li>
+</ol>
+<p><img src="https://ps-blog.oss-cn-beijing.aliyuncs.com/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_529f4c91-2648-4c6b-bea8-adb7bd4d37d0.png"></p>
+<p>query_cache_type 0 不使用查询缓存 1 始终使用查询缓存 2 按需使用查询缓存</p>
+<p>1.query_cache_type值为1时，不想使用缓存中查询的数据</p>
+<p>SELECT SQL_NO_CACHE * FROM my_table WHERE condition;</p>
+<p>2.query_cache_type值为2，要使用缓存的话，需要使用SQL_CACHE开关参数：</p>
+<p>SELECT SQL_CACHE * FROM my_table WHERE condition;</p>
+<h5 id="缓存失效时机"><a href="#缓存失效时机" class="headerlink" title="缓存失效时机"></a>缓存失效时机</h5><p>在表结构或者数据发生改变时，查询的数据不再有效。（INSERT、UPDATE、DELETE、ALERT等）<br>Mysql8.0版本将查询缓存的整个模块删除。</p>
+<h4 id="解析器"><a href="#解析器" class="headerlink" title="解析器"></a>解析器</h4><p>分为词法分析和语法分析<br>词法分析采用Lex词法分析器<br>Lex<br>Lex是Unix环境下非常著名的工具,主要功能是生成一个词法分析器(scanner)的C源码，描述规则采用正则表达式。</p>
+<p>语法分析采用</p>
+<p>yacc是一个典型的语法解析器。yacc生成的编译器主要是用C语言写成的语法解析器（Parser），需要与词法解析器Lex一起使用，再把两部份产生出来的C程序一并编译。</p>
+<p>select id, name from table1 where id&#x3D;1</p>
+<p>语句被解析为</p>
+<ol>
+<li><p>sql_command &#x3D; SQLCOM_SELECT</p>
+</li>
+<li><p>where子句 :select_lex-&gt;where</p>
+</li>
+<li><p>table列表：select_lex-&gt;table_list</p>
+</li>
+<li><p>字段列表：select_lex-&gt;item_list</p>
+</li>
+<li><p>table_list 保存表名</p>
+</li>
+<li><p>where<br> where<br>  |–&gt;FUNC_ITEM<br>  |–&gt;FIELD_ITEM(“id”)<br>  |–&gt;INT_ITEM(1)</p>
+</li>
+<li><p>item_list</p>
+<p>item_list:<br>  |–&gt;Item_field(“id”)<br>  |–&gt;Item_field(“name”)</p>
+</li>
+</ol>
+<h4 id="优化器"><a href="#优化器" class="headerlink" title="优化器"></a>优化器</h4><h5 id="优化步骤"><a href="#优化步骤" class="headerlink" title="优化步骤"></a>优化步骤</h5><ol>
+<li>根据语法树及统计统计，构建初始表访问数组（init_plan_arrays）</li>
+<li>根据表访问数组，计算每个表的最佳访问路径(find_best_ref)，同时保存当前最优执行计划（COST最小）</li>
+<li>如果找到更优的执行计划则更新最优执行计划，否则优化结束。</li>
+</ol>
+<h5 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h5><p>select * from table1 join table2 using（id） where table1.c &#x3D; 10 and table2.d &#x3D; 20;</p>
+<p>两种方案 </p>
+<ol>
+<li>从表1里面取出c&#x3D;10的记录的ID值，再根据ID值关联到t2，再判断t2里面的d值是否等于20。</li>
+<li>也可以先从表2中取出记录d&#x3D;20的ID值，再根据ID值关联到t1，在判断t1的c值是否等于10。</li>
+</ol>
+<h3 id="InnoDB与MyISAM区别"><a href="#InnoDB与MyISAM区别" class="headerlink" title="InnoDB与MyISAM区别"></a>InnoDB与MyISAM区别</h3><p>地址：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45076180/article/details/115111803">https://blog.csdn.net/qq_45076180/article/details/115111803</a></p>
+<h4 id="MyISAM存储引擎"><a href="#MyISAM存储引擎" class="headerlink" title="MyISAM存储引擎"></a>MyISAM存储引擎</h4><p>MyISAM无论是主键索引还是非主键索引都是非聚集索引（叶子节点不包含所有数据记录）,索引文件和数据文件是分离的，跨文件查询速度比较慢。<br><img src="/media/16458424268425/16459310981194.jpg"></p>
+<h4 id="InnoDB存储引擎"><a href="#InnoDB存储引擎" class="headerlink" title="InnoDB存储引擎"></a>InnoDB存储引擎</h4><p>InnoDB的主键索引就是聚集索引（叶子节点包含了完整的数据记录，查询速度较快），聚集索引在innoDB表中只有一个。<br><img src="/media/16458424268425/16459319097177.jpg"><br>InnoDB的非主键索引就是非聚集索引（叶子节点存储的是主键的id，用于回表查询，回表查询导致速度较慢）<br>非主键索引包括 二级索引、复合索引 等等<br><img src="/media/16458424268425/16459319787856.jpg"></p>
+<h4 id="InnoDB与MyISAM的区别"><a href="#InnoDB与MyISAM的区别" class="headerlink" title="InnoDB与MyISAM的区别"></a>InnoDB与MyISAM的区别</h4><ol>
+<li>InnoDB 支持事务，MyISAM 不支持。这是 MySQL 将默认存储引擎从 MyISAM 变成 InnoDB 的重要原因之一</li>
+<li>InnoDB 最小的锁粒度是行锁，MyISAM 最小的锁粒度是表锁。个更新语句会锁住整张表，导致其他查询和更新都会被阻塞，因此并发访问受限</li>
+<li>InnoDB 是聚集索引，MyISAM 是非聚集索引</li>
+<li>InnoDB 支持外键， MyISAM 不支持</li>
+<li>InnoDB 不保存表的具体行数，执行 select count(*) from table 时需要全表扫描。而MyISAM 用一个变量保存了整个表的行数，执行上述语句时只需要读出该变量即可，速度很快</li>
+</ol>
+<h3 id="聚簇索引和非聚簇索引"><a href="#聚簇索引和非聚簇索引" class="headerlink" title="聚簇索引和非聚簇索引"></a>聚簇索引和非聚簇索引</h3><ol>
+<li><p>非聚簇索引</p>
+<ul>
+<li><input disabled="" type="checkbox"> Myisam 索引与数据的关系</li>
+<li><input disabled="" type="checkbox"> Myisam 索引指向行所在磁盘的位置</li>
+<li><input disabled="" type="checkbox"> 数据都有自己的地址</li>
+<li><input disabled="" type="checkbox"> 数据和索引相互独立</li>
+</ul>
+</li>
+<li><p>聚簇索引</p>
+<ul>
+<li><input disabled="" type="checkbox"> 主键索引 既存索引值，又在叶子中存储行的数据</li>
+<li><input disabled="" type="checkbox"> 如果没有主键（primary key），则会Unique key做主键</li>
+<li><input disabled="" type="checkbox"> 如果没有unique，则系统生成一个内部的rowid做主键</li>
+<li><input disabled="" type="checkbox"> 像innodb中，主键的索引结构中既存储了主键值，又存储了行数据的这样的结构c称为“聚簇索引”</li>
+</ul>
+</li>
+<li><p>聚簇索引和非聚簇索引的优缺点</p>
+<p> 优势：根据主键查询条目比较少，不用回行(数据就在主键节点下)<br> 劣势: 如果碰到不规则数据插入时会造成频繁的页分裂。</p>
+</li>
+</ol>
+<p>####索引覆盖<br>索引覆盖是指查询的列恰好是索引的一部分，那么查询只需要在索引文件上进行，不需要回行到磁盘在查找数据，这样查询速度非常快</p>
+<h4 id="理想的索引"><a href="#理想的索引" class="headerlink" title="理想的索引"></a>理想的索引</h4><ol>
+<li>查询频繁</li>
+<li>区分度高</li>
+<li>长度小</li>
+<li>尽可能覆盖常用字段</li>
+</ol>
+<h3 id="Mysql建表、列选择注意点"><a href="#Mysql建表、列选择注意点" class="headerlink" title="Mysql建表、列选择注意点"></a>Mysql建表、列选择注意点</h3><h4 id="建表原则"><a href="#建表原则" class="headerlink" title="建表原则"></a>建表原则</h4><ol>
+<li>定长与变长相分离</li>
+<li>常用字段和不常用字段要分离</li>
+<li>1对多，需要关联统计的字段上，添加冗余字段(空间和时间上的转换)</li>
+</ol>
+<h4 id="列选择原则"><a href="#列选择原则" class="headerlink" title="列选择原则"></a>列选择原则</h4><ol>
+<li><p>字段类型优先级 整形 &gt; date,time &gt; enum,char &gt; varchar &gt; blob,text</p>
+<blockquote>
+<p>time 定长,运算快，节省空间,考虑时区，写sql时不方便 where &gt; ‘2005-10-12’;<br>enum 能起到约束值的目的，内部用整形来存储<br>char 定长 需要考虑字符集和(排序校对集)<br>varchar 不定长 要考虑字符集的转换与排序时校对集，速度慢<br>text&#x2F;Blob 无法使用内存临时表（排序等操作只能在磁盘上进行）</p>
+</blockquote>
+</li>
+<li><p>够用就行，不要慷慨</p>
+<blockquote>
+<p>原因：大的字段浪费内存，影响速度<br>以年龄为例，tinyint unsigned not null 可以存储255岁,足够使用 ,用int浪费了3个字节<br>以varchar(10) 和 varchar(300) 存储的内容相同，但是在表的联查上varchar(300)要花费更多的内存。</p>
+</blockquote>
+</li>
+<li><p>尽量避免使用NULL</p>
+<blockquote>
+<p>原因：NULL 不利于索引 要用特殊字节来标注</p>
+</blockquote>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/25/%E6%95%B0%E6%8D%AE%E5%BA%93/" data-id="cl18jc4ar0004uz9k9272arf4" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/03/27/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/03/08/Go/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/27/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/25/%E6%95%B0%E6%8D%AE%E5%BA%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/08/Go/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/06/%E6%9E%B6%E6%9E%84/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/06/Redis/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
