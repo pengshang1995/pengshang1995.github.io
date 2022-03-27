@@ -71,6 +71,63 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-PHP/编译安装PHP扩展" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/12/26/PHP/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85PHP%E6%89%A9%E5%B1%95/" class="article-date">
+  <time class="dt-published" datetime="2017-12-26T07:30:46.000Z" itemprop="datePublished">2017-12-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85/">编译安装</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2017/12/26/PHP/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85PHP%E6%89%A9%E5%B1%95/">编译安装PHP扩展</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="编译安装PHP扩展"><a href="#编译安装PHP扩展" class="headerlink" title="编译安装PHP扩展"></a>编译安装PHP扩展</h1><p>1、下载PHP环境安装包 php-7.1.4<br>2、解压php安装包<br><code>tar -zxf php-7.1.4.tar.gz</code><br>3、进入ext和你要安装的扩展的目录<br>4、执行phpize<br><code>/usr/local/php7-bht/bin/phpize</code><br>5、执行编译命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --with-php-config=/usr/local/php7-bht/bin/php-config --with-curl=DIR</span><br></pre></td></tr></table></figure>
+<p><strong>ps:</strong> –with-curl 根据安装扩展不同更改</p>
+<p>6、执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<p>7、然后会生成扩展名.so的文件<br>目录在extensions下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/php7-bht/lib/php/extensions/no-debug-non-zts-20160303/</span><br></pre></td></tr></table></figure>
+<p>8、执行加载模块</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/php/bin/php -m |grep curl</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/12/26/PHP/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85PHP%E6%89%A9%E5%B1%95/" data-id="cl18jp8qa000akz9k8muibgrx" data-title="编译安装PHP扩展" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP%E6%89%A9%E5%B1%95/" rel="tag">PHP扩展</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-算法/插入排序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2017/10/09/%E7%AE%97%E6%B3%95/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" class="article-date">
@@ -183,6 +240,10 @@
       <ul>
         
           <li>
+            <a href="/2022/03/26/PHP/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2022/03/25/%E6%95%B0%E6%8D%AE%E5%BA%93/">(no title)</a>
           </li>
         
@@ -196,10 +257,6 @@
         
           <li>
             <a href="/2022/03/06/Redis/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2022/03/06/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">(no title)</a>
           </li>
         
       </ul>
