@@ -7,13 +7,13 @@ date: 2022-03-26 16:50:16
 ### Topic和Partition
 #### Topic
 在 kafka 中，topic 是一个存储消息的逻辑概念，可以认为是一个消息集合。每条消息发送到 kafka 集群的消息都有一个类别。物理上来说，不同的 topic 的消息是分开存储的，每个 topic 可以有多个生产者向它发送消息，也可以有多个消费者去消费其中的消息。
-![](media/16459617429777/16459617859027.jpg)
+![](kafka/16459617859027.jpg)
 
 #### Partition：
 每个 topic 可以划分多个分区（每个 Topic 至少有一个分区），同一 topic 下的不同分区包含的消息是不同的。每个消息在被添加到分区时，都会被分配一个 offset（称之为偏移量），它是消息在此分区中的唯一编号，kafka 通过 offset保证消息在分区内的顺序，offset 的顺序不跨分区，即 kafka只保证在同一个分区内的消息是有序的。下图中，对于名字为 test 的 topic，做了 3 个分区，分别是p0、p1、p2.
 
 ➢ 每一条消息发送到 broker 时，会根据 partition 的规则选择存储到哪一个 partition。如果 partition 规则设置合理，那么所有的消息会均匀的分布在不同的partition中，这样就有点类似数据库的分库分表的概念，把数据做了分片处理。
-![](media/16459617429777/16459618684935.jpg)
+![](kafka/16459618684935.jpg)
 
 #### kafka 消息分发策略：
 　　消息是 kafka 中最基本的数据单元，在 kafka 中，一条消息由 key、value 两部分构成，在发送一条消息时，我们可以指定这个 key，那么 producer 会根据 key 和 partition 机制来判断当前这条消息应该发送并存储到哪个 partition 中。我们可以根据需要进行扩展 producer 的 partition 机制
@@ -26,7 +26,7 @@ Kafka 提供了一个角色：coordinator(协调员) 来执行对于 consumer gr
 
 **JoinGroup 的过程：**
 　　表示加入到 consumer group 中，在这一步中，所有的成员都会向 coordinator 发送 joinGroup 的请求。一旦所有成员都发送了 joinGroup 请求，那么 coordinator 会选择一个 consumer 担任 leader 角色，并把组成员信息和订阅信息发送消费者。下图就是描述了这么一个过程，并且请求与响应中携带的一些重要的信息。
-![](media/16459617429777/16459623765800.jpg)
+![](kafka/16459623765800.jpg)
 * 　protocol_metadata: 序列化后的消费者的订阅信息
 *  leader_id： 消费组中的消费者，coordinator 会选择一个座位 leader，对应的就是 member_id
 *  member_metadata 对应消费者的订阅信息
@@ -42,7 +42,7 @@ Kafka 提供了一个角色：coordinator(协调员) 来执行对于 consumer gr
 1.将所有 N Broker 和待分配的 i 个 Partition 排序
 2.将第 i 个 Partition 分配到第(i mod n)个 Broker 上
 
-![](media/16459617429777/16459629045157.jpg)
+![](kafka/16459629045157.jpg)
 
 
 #### 幂等性:

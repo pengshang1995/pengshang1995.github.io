@@ -16,7 +16,7 @@ zval_struct中的zval_value底层会声明联合体（字符串、bool、int强�
 
 #### php垃圾回收机制
 ##### 变量在zval的变量容器中结构
-![](media/16482623613635/16482643996275.jpg)
+![](PHP/16482643996275.jpg)
 > zval中，除了存储变量的类型和值之外，还有is_ref字段和refcount字段
 >     1、is_ref：是个bool值，用来区分变量是否属于引用集合。
 >     2、refcount：计数器，表示指向这个zval变量容器的变量个数。
@@ -107,7 +107,7 @@ master 进程只有一个，负责监听端口，接收来自 Web Server 的请�
 
 #### PHP-FPM 生命周期
 以nginx服务器为例，在web模式下，生命周期流程如下
-![](assets/16482933570726.jpg)
+![](PHP/16482933570726.jpg)
 
 SAPI运行PHP都经过下面几个阶段:
 1、模块初始化阶段（module init）：
