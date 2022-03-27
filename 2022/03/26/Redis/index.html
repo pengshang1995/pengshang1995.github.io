@@ -6,17 +6,19 @@
   
   <title>Redis | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="缓存穿透、缓存击穿、缓存雪崩缓存穿透描述：  缓存穿透是指缓存和数据库中都没有的数据，而用户不断发起请求。由于缓存是不命中时被动写的，并且出于容错考虑，如果从存储层查不到数据则不写入缓存，这将导致这个不存在的数据每次请求都要到存储层去查询，失去了缓存的意义。  在流量大时，可能DB就挂掉了，要是有人利用不存在的key频繁攻击我们的应用，这就是漏洞。 如发起为id为“-1”的数据或id为特别大不存在">
+  <meta name="description" content="应用场景 缓存（数据缓存、会话缓存、全页面缓存（FPC）） 计数器 查找表 消息队列（List） 分布式锁  redis是单线程还是多线程 无论什么版本，工作线程就是一个 6.x高版本出现了IO多线程  Redis单线程为什么这么快？ 纯内存操作 核心是基于非阻塞的IO多路复用机制 单线程避免了多线程的频繁上下文切换带来的性能问题。  Redis存在线程安全的问题吗？ 为什么redis可以保障内部">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis">
 <meta property="og:url" content="http://example.com/2022/03/26/Redis/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="缓存穿透、缓存击穿、缓存雪崩缓存穿透描述：  缓存穿透是指缓存和数据库中都没有的数据，而用户不断发起请求。由于缓存是不命中时被动写的，并且出于容错考虑，如果从存储层查不到数据则不写入缓存，这将导致这个不存在的数据每次请求都要到存储层去查询，失去了缓存的意义。  在流量大时，可能DB就挂掉了，要是有人利用不存在的key频繁攻击我们的应用，这就是漏洞。 如发起为id为“-1”的数据或id为特别大不存在">
+<meta property="og:description" content="应用场景 缓存（数据缓存、会话缓存、全页面缓存（FPC）） 计数器 查找表 消息队列（List） 分布式锁  redis是单线程还是多线程 无论什么版本，工作线程就是一个 6.x高版本出现了IO多线程  Redis单线程为什么这么快？ 纯内存操作 核心是基于非阻塞的IO多路复用机制 单线程避免了多线程的频繁上下文切换带来的性能问题。  Redis存在线程安全的问题吗？ 为什么redis可以保障内部">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/.com//16483697305503.jpg">
 <meta property="article:published_time" content="2022-03-26T08:50:16.000Z">
-<meta property="article:modified_time" content="2022-03-27T00:45:29.685Z">
+<meta property="article:modified_time" content="2022-03-27T08:28:53.830Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/.com//16483697305503.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -95,7 +97,24 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id="缓存穿透、缓存击穿、缓存雪崩"><a href="#缓存穿透、缓存击穿、缓存雪崩" class="headerlink" title="缓存穿透、缓存击穿、缓存雪崩"></a>缓存穿透、缓存击穿、缓存雪崩</h3><h4 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h4><p><strong>描述：</strong></p>
+        <h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ol>
+<li>缓存（数据缓存、会话缓存、全页面缓存（FPC））</li>
+<li>计数器</li>
+<li>查找表</li>
+<li>消息队列（List）</li>
+<li>分布式锁</li>
+</ol>
+<h3 id="redis是单线程还是多线程"><a href="#redis是单线程还是多线程" class="headerlink" title="redis是单线程还是多线程"></a>redis是单线程还是多线程</h3><ol>
+<li>无论什么版本，工作线程就是一个</li>
+<li>6.x高版本出现了IO多线程<br><img src="/.com//16483697305503.jpg"></li>
+</ol>
+<h3 id="Redis单线程为什么这么快？"><a href="#Redis单线程为什么这么快？" class="headerlink" title="Redis单线程为什么这么快？"></a>Redis单线程为什么这么快？</h3><ol>
+<li>纯内存操作</li>
+<li>核心是基于非阻塞的IO多路复用机制</li>
+<li>单线程避免了多线程的频繁上下文切换带来的性能问题。</li>
+</ol>
+<h3 id="Redis存在线程安全的问题吗？-为什么"><a href="#Redis存在线程安全的问题吗？-为什么" class="headerlink" title="Redis存在线程安全的问题吗？ 为什么"></a>Redis存在线程安全的问题吗？ 为什么</h3><p>redis可以保障内部串行<br>外界使用的时候要保障，业务上要自行保障顺序~</p>
+<h3 id="缓存穿透、缓存击穿、缓存雪崩"><a href="#缓存穿透、缓存击穿、缓存雪崩" class="headerlink" title="缓存穿透、缓存击穿、缓存雪崩"></a>缓存穿透、缓存击穿、缓存雪崩</h3><h4 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h4><p><strong>描述：</strong></p>
 <blockquote>
 <p>缓存穿透是指缓存和数据库中都没有的数据，而用户不断发起请求。由于缓存是不命中时被动写的，并且出于容错考虑，如果从存储层查不到数据则不写入缓存，这将导致这个不存在的数据每次请求都要到存储层去查询，失去了缓存的意义。</p>
 </blockquote>
@@ -128,7 +147,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/26/Redis/" data-id="cl18jp8q60001kz9k4gvwaa9d" data-title="Redis" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/03/26/Redis/" data-id="cl190suek00022m9khugde3zd" data-title="Redis" class="article-share-link">Share</a>
       
       
       
@@ -138,11 +157,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2022/03/26/Go/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2022/03/26/PHP/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Go
+          PHP
         
       </div>
     </a>
@@ -213,6 +232,10 @@
           </li>
         
           <li>
+            <a href="/2022/03/26/PHP/">PHP</a>
+          </li>
+        
+          <li>
             <a href="/2022/03/26/Redis/">Redis</a>
           </li>
         
@@ -222,10 +245,6 @@
         
           <li>
             <a href="/2022/03/26/%E6%9E%B6%E6%9E%84/">架构</a>
-          </li>
-        
-          <li>
-            <a href="/2022/03/26/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
           </li>
         
       </ul>
