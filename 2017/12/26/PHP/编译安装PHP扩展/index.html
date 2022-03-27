@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>编译安装PHP扩展 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="编译安装PHP扩展1、下载PHP环境安装包 php-7.1.42、解压php安装包tar -zxf php-7.1.4.tar.gz3、进入ext和你要安装的扩展的目录4、执行phpize&#x2F;usr&#x2F;local&#x2F;php7-bht&#x2F;bin&#x2F;phpize5、执行编译命令 1.&#x2F;configure --with-php-config&#x3D;&#x2F;usr&#x2F;local&#x2F;php7-bht&#x2F;bin&#x2F;php-config -">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编译安装PHP扩展">
+<meta property="og:url" content="http://example.com/2017/12/26/PHP/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85PHP%E6%89%A9%E5%B1%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="编译安装PHP扩展1、下载PHP环境安装包 php-7.1.42、解压php安装包tar -zxf php-7.1.4.tar.gz3、进入ext和你要安装的扩展的目录4、执行phpize&#x2F;usr&#x2F;local&#x2F;php7-bht&#x2F;bin&#x2F;phpize5、执行编译命令 1.&#x2F;configure --with-php-config&#x3D;&#x2F;usr&#x2F;local&#x2F;php7-bht&#x2F;bin&#x2F;php-config -">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-12-26T07:30:46.000Z">
+<meta property="article:modified_time" content="2017-12-26T07:30:46.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="PHP扩展">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-PHP/编译安装PHP扩展" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/12/26/PHP/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85PHP%E6%89%A9%E5%B1%95/" class="article-date">
+  <time class="dt-published" datetime="2017-12-26T07:30:46.000Z" itemprop="datePublished">2017-12-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85/">编译安装</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      编译安装PHP扩展
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="编译安装PHP扩展"><a href="#编译安装PHP扩展" class="headerlink" title="编译安装PHP扩展"></a>编译安装PHP扩展</h1><p>1、下载PHP环境安装包 php-7.1.4<br>2、解压php安装包<br><code>tar -zxf php-7.1.4.tar.gz</code><br>3、进入ext和你要安装的扩展的目录<br>4、执行phpize<br><code>/usr/local/php7-bht/bin/phpize</code><br>5、执行编译命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --with-php-config=/usr/local/php7-bht/bin/php-config --with-curl=DIR</span><br></pre></td></tr></table></figure>
+<p><strong>ps:</strong> –with-curl 根据安装扩展不同更改</p>
+<p>6、执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<p>7、然后会生成扩展名.so的文件<br>目录在extensions下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/php7-bht/lib/php/extensions/no-debug-non-zts-20160303/</span><br></pre></td></tr></table></figure>
+<p>8、执行加载模块</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/php/bin/php -m |grep curl</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/12/26/PHP/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85PHP%E6%89%A9%E5%B1%95/" data-id="cl18jmx3c0006fk9k8xr9350w" data-title="编译安装PHP扩展" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP%E6%89%A9%E5%B1%95/" rel="tag">PHP扩展</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          “单例模式”
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/09/%E7%AE%97%E6%B3%95/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">“插入排序”</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85/">编译安装</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP%E6%89%A9%E5%B1%95/" rel="tag">PHP扩展</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP&#x2F;IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/" rel="tag">主从复制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" rel="tag">单例模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A7%94%E6%89%98%E6%A8%A1%E5%BC%8F/" rel="tag">委托模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82/" rel="tag">抽象工厂</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag">排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84/" rel="tag">最大子数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/" rel="tag">适配器模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%9F%E5%88%97/" rel="tag">队列</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JS/" style="font-size: 10px;">JS</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/PHP/" style="font-size: 20px;">PHP</a> <a href="/tags/PHP%E6%89%A9%E5%B1%95/" style="font-size: 10px;">PHP扩展</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/" style="font-size: 10px;">主从复制</a> <a href="/tags/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">单例模式</a> <a href="/tags/%E5%A7%94%E6%89%98%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">委托模式</a> <a href="/tags/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82/" style="font-size: 10px;">抽象工厂</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 20px;">排序</a> <a href="/tags/%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84/" style="font-size: 10px;">最大子数组</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 20px;">设计模式</a> <a href="/tags/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">适配器模式</a> <a href="/tags/%E9%98%9F%E5%88%97/" style="font-size: 10px;">队列</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/27/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/25/%E6%95%B0%E6%8D%AE%E5%BA%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/08/Go/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/06/%E6%9E%B6%E6%9E%84/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/06/Redis/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
