@@ -1,0 +1,76 @@
+<hr>
+<p>title: 堆排序<br>date: 2018-05-04 11:06:56<br>categories:</p>
+<ul>
+<li>算法<br>tags:</li>
+<li>排序</li>
+</ul>
+<hr>
+<h3 id="堆排序概念"><a href="#堆排序概念" class="headerlink" title="堆排序概念"></a>堆排序概念</h3><p>堆排序是利用堆这种数据结构而设计的一种排序算法。时间复杂度为O(nlogn)。</p>
+<blockquote>
+<p>堆排序具有如下性质的完全二叉树:每个节点的值都大于或等于其左右孩子节点的值，称为最大堆；或每个节点都小于或者等于其左右孩子节点被称为最小堆。</p>
+</blockquote>
+<p><img src="http://ps-blog.oss-cn-beijing.aliyuncs.com/18-5-4/77248587.jpg"><br>对堆中的节点进行编号，将这种逻辑映射到数组中，如下：<br><img src="http://ps-blog.oss-cn-beijing.aliyuncs.com/18-5-4/48665903.jpg"><br>堆排序的基本性质：<br>最大堆：左右子节点小于父节点<br>最小堆：左右子节点大于父节点</p>
+<h3 id="堆排序流程"><a href="#堆排序流程" class="headerlink" title="堆排序流程"></a>堆排序流程</h3><p>1.<strong>构建最大堆</strong><br><strong>构建最大堆之前呈现效果如下</strong>：<br><img src="http://ps-blog.oss-cn-beijing.aliyuncs.com/18-5-4/33025115.jpg"><br><strong>构建最大堆之后呈现效果如下：</strong><br><img src="http://ps-blog.oss-cn-beijing.aliyuncs.com/18-5-4/90896261.jpg"><br>保证了堆排序中的最大堆的性质。<br>2.<strong>堆排序算法实现</strong><br>取出构建最大堆中的最大值，放在尾部<br>然后重新构建最大堆。<br><img src="http://ps-blog.oss-cn-beijing.aliyuncs.com/18-5-4/97733012.jpg"><br>以此类推最终达到从小到大的排序效果，完成堆排序。</p>
+<h3 id="PHP实现堆排序"><a href="#PHP实现堆排序" class="headerlink" title="PHP实现堆排序"></a>PHP实现堆排序</h3><pre><code>&lt;?php
+    /**
+    * 
+    */
+    class HeapSort 
+    {
+        public function __construct(&amp;$arr) {
+            $arr_length = count($arr)-1;
+            $this-&gt;HeapMaxSort($arr,$arr_length);
+        }
+        private function HeapMaxSort(&amp;$arr,$arr_length) {;
+            $this-&gt;BuildMaxHeap($arr,$arr_length);
+            
+            for($i = $arr_length;$i &gt;= 0; $i--) {
+                $this-&gt;swap($arr,$i,0);
+                $arr_length--;
+                $this-&gt;MaxHeapify($arr,0,$arr_length);
+            }
+        }
+        private function BuildMaxHeap(&amp;$arr,$arr_length) {
+            $count = count($arr)-1;
+            for ($i = floor($count/2); $i &gt;=0; $i--) {
+                $this-&gt;MaxHeapify($arr,$i,$arr_length);
+            }
+        }
+
+    public function MaxHeapify(&amp;$arr,$i,$arr_length) {
+            $left = $this-&gt;left($i);
+            $right = $this-&gt;right($i);
+            if($left &lt;= $arr_length &amp;&amp; $arr[$left] &gt;= $arr[$i]) {
+                $this-&gt;swap($arr,$i,$left);
+                $largest = $left;
+            } else {
+                $largest = $i;
+            }
+            if ($right &lt;= $arr_length &amp;&amp; $arr[$right] &gt;= $arr[$largest]) {
+                $this-&gt;swap($arr,$largest,$right);
+            $largest = $right;
+            }
+            if ($largest != $i) {
+                $this-&gt;MaxHeapify($arr,$largest);
+            }
+            
+        }
+        public function swap(&amp;$arr,$exist,$largest) {
+            $temp = $arr[$exist];
+            $arr[$exist] = $arr[$largest];
+            $arr[$largest] = $temp;
+        }
+        private function left($i) {
+            return 2*$i+1;
+        }
+
+        private function right($i) {
+            return 2*$i+2;
+        }
+
+
+    }
+    $array = array(5,2,3,1,4,6);
+    $Heap_Model = new HeapSort($array);
+    var_dump($array);
+</code></pre>

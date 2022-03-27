@@ -1,0 +1,15 @@
+<hr>
+<p>title: 网络分层TCP&#x2F;IP<br>date: 2018-05-07 10:41:46<br>categories:</p>
+<ul>
+<li>计算机网络<br>tags:</li>
+<li>TCP&#x2F;IP</li>
+</ul>
+<hr>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>互联网分为五层，自下而上分为应用层、传输层、网络层、链接层、实体层。<br><img src="http://ps-blog.oss-cn-beijing.aliyuncs.com/18-5-7/33785501.jpg"></p>
+<h4 id="实体层"><a href="#实体层" class="headerlink" title="实体层"></a>实体层</h4><p>实体层就是把电脑连接在一起的物理手段。它主要规定了网络的一些电气特性，作用是负责传送0和1的电信号。</p>
+<h4 id="链接层"><a href="#链接层" class="headerlink" title="链接层"></a>链接层</h4><p>拥有唯一的MAC地址进行标识，有了数据包和网卡MAC地址、广播的发送方式，链路层就可以在多台计算机之间传送数据。</p>
+<h4 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h4><p>网络层关心的是如何把一个数据从一台设备发送到另一台设备。是主机到主机之间的通信。</p>
+<h4 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h4><p>有了MAC地址和IP地址，我们可以在互联网任意两个主机上建立通信。区分一台主机中的接收的数据包属于哪个程序使用，是靠端口判断的。传输层的功能是从端口到端口的通信。因此Unix系统就把主机和端口叫作套接字(socket)</p>
+<h5 id="UDP协议"><a href="#UDP协议" class="headerlink" title="UDP协议"></a>UDP协议</h5><p>UDP数据包，也是由”标头”和”数据”两部分组成。<br>“标头”部分主要定义了发出端口和接收端口，”数据”部分就是具体的内容。然后，把整个UDP数据包放入IP数据包的”数据”部分，而前面说过，IP数据包又是放在以太网数据包之中的，所以整个以太网数据包现在变成了下面这样：<br><img src="http://ps-blog.oss-cn-beijing.aliyuncs.com/18-5-7/2213727.jpg"></p>
+<h5 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h5><p>UDP协议的优点是比较简单，容易实现，但是缺点是可靠性差，一旦数据发出后，无法知道对方是否收到。<br>为了解决这个问题，TCP协议诞生。TCP协议可以理解为有确认机制的UDP协议。如果发送一个数据包遗失，就收不到确认，发送方就知道有必要重新发送数据包。<br>而且TCP数据包没有长度限制，理论上可以无限长，但是为了保证网络效率通常TCP数据包的长度不会超过IP数据包长度，以保证单个TCP数据包不被分割。</p>
+<h4 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h4><p>应用层的作用就是规定应用程序的数据格式。<br>TCP协议可以为各种各样的程序传递数据，比如Email、WWW、FTP。必须有不同的协议规定电子邮件、网页、FTP数据格式，这些应用程序协议构成了“应用层”。</p>

@@ -1,0 +1,99 @@
+<hr>
+<p>title: 优先队列(PriorityQueue)<br>date: 2018-05-08 11:53:16<br>categories:</p>
+<ul>
+<li>算法<br>tags:</li>
+<li>队列</li>
+</ul>
+<hr>
+<h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>优先队列（priority queue）是一种用来维护由一组元素构成的集合S的数据结构，其中每一个元素都有一个相关的值，称为关键字（key）。<br><strong>队列的定义</strong><br>队列属于先进先出型，Frist in Frist out（FIFO）<br>优先队列基于堆排序的方法进行实现的，堆排序每次都要进行建立最大堆，第一个元素为整个队列中的最大值，优先队列也是利用了堆排序这个性质达到优先队列中权值最大的先出的效果。<br><img src="http://ps-blog.oss-cn-beijing.aliyuncs.com/18-5-4/77248587.jpg"></p>
+<h4 id="优先队列的方法"><a href="#优先队列的方法" class="headerlink" title="优先队列的方法"></a>优先队列的方法</h4><ol>
+<li>HeapMaximum方法实现了返回最大值</li>
+<li>HeapExtractMax方法实现删除队列中的最大值并返回最大值</li>
+<li>HeapIncreaseKey方法实现更改某个值。</li>
+<li>MaxHeapInsert方法实现将元素插入到队列队尾</li>
+</ol>
+<h4 id="PHP实现优先队列"><a href="#PHP实现优先队列" class="headerlink" title="PHP实现优先队列"></a>PHP实现优先队列</h4><pre><code>    public function HeapMaximum($arr) {
+        return $arr[0];
+    }
+
+    public function HeapExtractMax(&amp;$arr,$length) {
+        if($length &lt; 1) {
+            return false;
+        }
+
+        $max = $arr[0];
+        $arr[0] = $arr[$length-1];
+        $length = $length - 1;
+        $this-&gt;MaxHeapify($arr,1,$length);
+        return $max;
+    }
+
+    public function HeapIncreaseKey(&amp;$arr,$i,$key) {
+        if ($key &lt; $arr[$i]) {
+            return false;
+        }
+        $arr[$i] = $key;
+        $flag = $this-&gt;parent($i);
+        while ($i &gt; 1 &amp;&amp; $arr[$flag] &lt; $arr[$i]) {
+            $this-&gt;swap($arr,$flag,$i);
+            $i = $this-&gt;parent($i);
+        }
+    }
+
+    public function MaxHeapInsert(&amp;$arr,$key) {
+        $length = count($arr) + 1;
+        $arr[$length] = 0;
+        $this-&gt;HeapIncreaseKey($arr,$length,$key);
+    }
+</code></pre>
+<h4 id="基于堆排序的PHP的部分代码"><a href="#基于堆排序的PHP的部分代码" class="headerlink" title="基于堆排序的PHP的部分代码"></a>基于堆排序的PHP的部分代码</h4><pre><code>class PriorityQueue
+{
+    public function __construct(&amp;$arr) {
+            $arr_length = count($arr)-1;
+            $this-&gt;BuildMaxHeap($arr,$arr_length);
+    }
+
+
+    public function BuildMaxHeap(&amp;$arr,$arr_length) {
+            $count = count($arr)-1;
+            for ($i = floor($count/2); $i &gt;=0; $i--) {
+                $this-&gt;MaxHeapify($arr,$i,$arr_length);
+            }
+    }
+    public function MaxHeapify(&amp;$arr,$i,$arr_length) {
+        $left = $this-&gt;left($i);
+        $right = $this-&gt;right($i);
+        if($left &lt;= $arr_length &amp;&amp; $arr[$left] &gt;= $arr[$i]) {
+            $this-&gt;swap($arr,$i,$left);
+            $largest = $left;
+        } else {
+            $largest = $i;
+        }
+        if ($right &lt;= $arr_length &amp;&amp; $arr[$right] &gt;= $arr[$largest]) {
+            $this-&gt;swap($arr,$largest,$right);
+            $largest = $right;
+        }
+        if ($largest != $i) {
+            $this-&gt;MaxHeapify($arr,$largest);
+        }
+    }
+
+    public function swap(&amp;$arr,$exist,$largest) {
+        $temp = $arr[$exist];
+        $arr[$exist] = $arr[$largest];
+        $arr[$largest] = $temp;
+    }
+    private function left($i) {
+        return 2*$i+1;
+    }
+
+    private function right($i) {
+        return 2*$i+2;
+    }
+    private  function parent($i) {
+        return floor($i/2);
+    }
+
+    //以下是队列操作
+}
+</code></pre>

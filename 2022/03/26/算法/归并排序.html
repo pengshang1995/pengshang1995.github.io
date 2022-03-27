@@ -1,0 +1,63 @@
+<hr>
+<p>title: 归并排序<br>date: 2018-04-25 11:27:46<br>categories:</p>
+<ul>
+<li>算法<br>tags:</li>
+<li>排序</li>
+</ul>
+<hr>
+<h3 id="PHP实现归并排序算法"><a href="#PHP实现归并排序算法" class="headerlink" title="PHP实现归并排序算法"></a>PHP实现归并排序算法</h3><pre><code>&lt;?php
+    function merger_sort(&amp;$arr,$frist,$end) {
+        if($frist &lt; $end) {
+            $middle = floor(($frist+$end)/2);
+            merger_sort($arr,$frist,$middle);
+            merger_sort($arr,$middle+1,$end);
+            merger($arr,$frist,$middle,$end);
+        }
+    }
+    function merger(&amp;$arr,$start,$mid,$end) {
+        $i = $start;
+        $j=$mid + 1;
+        $k = $start;
+        $temparr = array();
+
+        while($i!=$mid+1 &amp;&amp; $j!=$end+1)
+        {
+           if($arr[$i] &gt;= $arr[$j]){
+               $temparr[$k++] = $arr[$j++];
+           }
+           else{
+               $temparr[$k++] = $arr[$i++];
+           }
+        }
+        while($i != $mid+1){
+            $temparr[$k++] = $arr[$i++];
+        }
+
+        while($j != $end+1){
+            $temparr[$k++] = $arr[$j++];
+        }
+       
+        for($i=$start; $i&lt;=$end; $i++){
+            $arr[$i] = $temparr[$i];
+        }
+    }
+
+    function MergeSort(&amp;$arr){
+        $start = 0;
+        $end = count($arr) - 1;
+        merger_sort($arr,$start,$end);
+    }
+    $array = array(5,2,7,4);
+    MergeSort($array);
+    var_dump($array);
+</code></pre>
+<h3 id="分治策略的步骤"><a href="#分治策略的步骤" class="headerlink" title="分治策略的步骤"></a>分治策略的步骤</h3><ol>
+<li><strong>分解</strong> 原问题为若干个子问题,这些子问题是原问题的规模较小的实例。</li>
+<li><strong>解决</strong> 这些子问题，递归地求解各子问题。然而子问题的规模足够小，则直接求解。</li>
+<li><strong>合并</strong> 这些子问题的解成原问题的解。</li>
+</ol>
+<h3 id="归并排序遵从分治策略"><a href="#归并排序遵从分治策略" class="headerlink" title="归并排序遵从分治策略"></a>归并排序遵从分治策略</h3><ol>
+<li>merger_sort函数完成了分解的步骤，将原数组array(5,2,7,4)最终分解为array(5,2)和array(7,4)</li>
+<li>merger函数完成了解决（排序）和合并的操作首先对分解的array(5,2)和array(7,4)进行排序，得到 array(2,5)和array(4,7),然后合并为array(2,5,4,7),然后继续merge进行解决，流程是将2与4进行比较拿出较小的放在原数组中，然后将4和5进行比较，然后比较5和7，完成归并排序。</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>归并排序的时间复杂度是o(nlogn)</p>
