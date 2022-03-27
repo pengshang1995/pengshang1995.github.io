@@ -6,25 +6,26 @@
   
   <title>网络基础 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="网络基础TCPTCP滑动窗口滑动窗口tcp通过滑动窗口进行流量控制，所谓的窗口可以理解为接收端所能提供的缓冲区大小。TCP是一个滑动窗口协议，即一个TCP连接的发送端在某个时刻能发多少数据是由滑动窗口控制的 滑动窗口示意图 RTT（Round trip time）表示从发送端到接收端的一去一回需要的时间。 TCP在数据传输过程中会对RTT进行采样（即对发送的数据包及其ACK的时间差进行测量，并根据">
+  <meta name="description" content="网络基础TCP简述 面向连接的 可靠的传输协议  浏览器访问 www.baidu.com 的过程 浏览器向DNS服务器发出解析域名的请求； DNS服务器将”www.baidu.com&quot;域名解析为对应的IP地址，并返回给浏览器； 浏览器与百度服务器进行三次握手，建立TCP连接； 浏览器发出HTTP请求报文； 服务器回复HTTP响应报文； 浏览器解析响应报文，渲染HTML内容，并显示在页面上">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网络基础">
 <meta property="og:url" content="http://example.com/2022/03/26/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="网络基础TCPTCP滑动窗口滑动窗口tcp通过滑动窗口进行流量控制，所谓的窗口可以理解为接收端所能提供的缓冲区大小。TCP是一个滑动窗口协议，即一个TCP连接的发送端在某个时刻能发多少数据是由滑动窗口控制的 滑动窗口示意图 RTT（Round trip time）表示从发送端到接收端的一去一回需要的时间。 TCP在数据传输过程中会对RTT进行采样（即对发送的数据包及其ACK的时间差进行测量，并根据">
+<meta property="og:description" content="网络基础TCP简述 面向连接的 可靠的传输协议  浏览器访问 www.baidu.com 的过程 浏览器向DNS服务器发出解析域名的请求； DNS服务器将”www.baidu.com&quot;域名解析为对应的IP地址，并返回给浏览器； 浏览器与百度服务器进行三次握手，建立TCP连接； 浏览器发出HTTP请求报文； 服务器回复HTTP响应报文； 浏览器解析响应报文，渲染HTML内容，并显示在页面上">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/.com//16458387775318/16458428879729.jpg">
-<meta property="og:image" content="http://example.com/.com//16458387775318/16460267189859.jpg">
-<meta property="og:image" content="http://example.com/.com//16458387775318/16460268422121.jpg">
-<meta property="og:image" content="http://example.com/.com//16458387775318/16460271640922.jpg">
-<meta property="og:image" content="http://example.com/.com//16458387775318/16458401256437.jpg">
-<meta property="og:image" content="http://example.com/.com//16458387775318/16458406664471.jpg">
-<meta property="og:image" content="http://example.com/.com//16458387775318/16459593650116.jpg">
+<meta property="og:image" content="http://example.com/2022/03/26/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/16458401256437.jpg">
+<meta property="og:image" content="http://example.com/2022/03/26/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/16458406664471.jpg">
+<meta property="og:image" content="http://example.com/2022/03/26/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/16483794233456.jpg">
+<meta property="og:image" content="http://example.com/2022/03/26/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/16458428879729.jpg">
+<meta property="og:image" content="http://example.com/2022/03/26/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/16460267189859.jpg">
+<meta property="og:image" content="http://example.com/2022/03/26/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/16460268422121.jpg">
+<meta property="og:image" content="http://example.com/2022/03/26/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/16460271640922.jpg">
+<meta property="og:image" content="http://example.com/2022/03/26/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/16459593650116.jpg">
 <meta property="article:published_time" content="2022-03-26T08:50:16.000Z">
-<meta property="article:modified_time" content="2022-03-27T00:45:49.411Z">
+<meta property="article:modified_time" content="2022-03-27T14:02:46.005Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/.com//16458387775318/16458428879729.jpg">
+<meta name="twitter:image" content="http://example.com/2022/03/26/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/16458401256437.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -103,7 +104,30 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="网络基础"><a href="#网络基础" class="headerlink" title="网络基础"></a>网络基础</h1><h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><h3 id="TCP滑动窗口"><a href="#TCP滑动窗口" class="headerlink" title="TCP滑动窗口"></a>TCP滑动窗口</h3><p>滑动窗口<br>tcp通过滑动窗口进行流量控制，所谓的窗口可以理解为接收端所能提供的缓冲区大小。<br><img src="/.com//16458387775318/16458428879729.jpg"><br>TCP是一个滑动窗口协议，即一个TCP连接的发送端在某个时刻能发多少数据是由滑动窗口控制的</p>
+        <h1 id="网络基础"><a href="#网络基础" class="headerlink" title="网络基础"></a>网络基础</h1><h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><h4 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h4><ol>
+<li>面向<strong>连接</strong>的</li>
+<li><strong>可靠</strong>的传输协议</li>
+</ol>
+<h4 id="浏览器访问-www-baidu-com-的过程"><a href="#浏览器访问-www-baidu-com-的过程" class="headerlink" title="浏览器访问 www.baidu.com 的过程"></a>浏览器访问 <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a> 的过程</h4><ol>
+<li>浏览器向DNS服务器发出解析域名的请求；</li>
+<li>DNS服务器将”<a target="_blank" rel="noopener" href="http://www.baidu.com&quot;域名解析为对应的ip地址,并返回给浏览器;/">www.baidu.com&quot;域名解析为对应的IP地址，并返回给浏览器；</a></li>
+<li>浏览器与百度服务器进行三次握手，建立TCP连接；</li>
+<li>浏览器发出HTTP请求报文；</li>
+<li>服务器回复HTTP响应报文；</li>
+<li>浏览器解析响应报文，渲染HTML内容，并显示在页面上；</li>
+<li>收发报文结束，释放TCP连接，执行四次挥手。</li>
+</ol>
+<h4 id="TCP三次握手-建立连接"><a href="#TCP三次握手-建立连接" class="headerlink" title="TCP三次握手 建立连接"></a>TCP三次握手 建立连接</h4><p>在TCP&#x2F;IP协议中,TCP协议提供可靠的连接服务,采用三次握手建立一个连接.</p>
+<p>第一次握手：Client将标志位SYN置为1，随机产生一个值seq&#x3D;J，并将该数据包发送给Server，Client进入SYN_SENT状态，等待Server确认。</p>
+<p>SYN：同步序列编号(Synchronize Sequence Numbers)</p>
+<p>第二次握手：Server收到数据包后由标志位SYN&#x3D;1知道Client请求建立连接，Server将标志位SYN和ACK都置为1，ack&#x3D;J+1，随机产生一个值seq&#x3D;K，并将该数据包发送给Client以确认连接请求，Server进入SYN_RCVD状态。</p>
+<p>第三次握手：Client收到确认后，检查ack是否为J+1，ACK是否为1，如果正确则将标志位ACK置为1，ack&#x3D;K+1，并将该数据包发送给Server，Server检查ack是否为K+1，ACK是否为1，如果正确则连接建立成功，Client和Server进入ESTABLISHED状态，完成三次握手，随后Client与Server之间可以开始传输数据了。<br><img src="/2022/03/26/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/16458401256437.jpg"></p>
+<h4 id="TCP四次挥手"><a href="#TCP四次挥手" class="headerlink" title="TCP四次挥手"></a>TCP四次挥手</h4><p>1.第一次挥手：Client发送一个FIN，用来关闭Client到Server的数据传送，Client进入FIN_WAIT_1状态。</p>
+<p>2.第二次挥手：Server收到FIN后，发送一个ACK给Client，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），Server进入CLOSE_WAIT状态。</p>
+<p>3.第三次挥手：Server发送一个FIN，用来关闭Server到Client的数据传送，Server进入LAST_ACK状态。</p>
+<p>4.第四次挥手：Client收到FIN后，Client进入TIME_WAIT状态，接着发送一个ACK给Server，确认序号为收到序号+1， Server进入CLOSED状态，完成四次挥手。<br><img src="/2022/03/26/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/16458406664471.jpg"></p>
+<h4 id="SOCKET"><a href="#SOCKET" class="headerlink" title="SOCKET"></a>SOCKET</h4><p><img src="/2022/03/26/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/16483794233456.jpg"></p>
+<h3 id="TCP滑动窗口"><a href="#TCP滑动窗口" class="headerlink" title="TCP滑动窗口"></a>TCP滑动窗口</h3><p>滑动窗口<br>tcp通过滑动窗口进行流量控制，所谓的窗口可以理解为接收端所能提供的缓冲区大小。<br><img src="/2022/03/26/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/16458428879729.jpg"><br>TCP是一个滑动窗口协议，即一个TCP连接的发送端在某个时刻能发多少数据是由滑动窗口控制的</p>
 <p>滑动窗口示意图</p>
 <p>RTT（Round trip time）<br>表示从发送端到接收端的一去一回需要的时间。</p>
 <p>TCP在数据传输过程中会对RTT进行采样（即对发送的数据包及其ACK的时间差进行测量，并根据测量值更新RTT值）</p>
@@ -120,36 +144,18 @@
 <blockquote>
 <p>计数器</p>
 </blockquote>
-<p><img src="/.com//16458387775318/16460267189859.jpg"><br>计数器是一种比较简单的限流算法，用途比较广泛，在接口层面，很多地方使用这种方式限流。在一段时间内，进行计数，与阀值进行比较，到了时间临界点，将计数器清0。<br><strong>局限性：</strong><br>这里需要注意的是，存在一个时间临界点的问题。举个栗子，在12:01:00到12:01:58这段时间内没有用户请求，然后在12:01:59这一瞬时发出100个请求，OK，然后在12:02:00这一瞬时又发出了100个请求。这里你应该能感受到，在这个临界点可能会承受恶意用户的大量请求，甚至超出系统预期的承受。</p>
+<p><img src="/2022/03/26/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/16460267189859.jpg"><br>计数器是一种比较简单的限流算法，用途比较广泛，在接口层面，很多地方使用这种方式限流。在一段时间内，进行计数，与阀值进行比较，到了时间临界点，将计数器清0。<br><strong>局限性：</strong><br>这里需要注意的是，存在一个时间临界点的问题。举个栗子，在12:01:00到12:01:58这段时间内没有用户请求，然后在12:01:59这一瞬时发出100个请求，OK，然后在12:02:00这一瞬时又发出了100个请求。这里你应该能感受到，在这个临界点可能会承受恶意用户的大量请求，甚至超出系统预期的承受。</p>
 <blockquote>
 <p>滑动窗口</p>
 </blockquote>
-<p>由于计数器存在临界点缺陷，后来出现了滑动窗口算法来解决<br><img src="/.com//16458387775318/16460268422121.jpg"></p>
+<p>由于计数器存在临界点缺陷，后来出现了滑动窗口算法来解决<br><img src="/2022/03/26/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/16460268422121.jpg"></p>
 <p><strong>局限性：</strong><br>滑动窗口的意思是说把固定时间片，进行划分，并且随着时间的流逝，进行移动，这样就巧妙的避开了计数器的临界点问题。也就是说这些固定数量的可以移动的格子，将会进行计数判断阀值，因此格子的数量影响着滑动窗口算法的精度</p>
 <blockquote>
 <p>漏桶</p>
 </blockquote>
-<p>虽然滑动窗口有效避免了时间临界点的问题，但是依然有时间片的概念，而漏桶算法在这方面比滑动窗口而言，更加先进。<br>有一个固定的桶，进水的速率是不确定的，但是出水的速率是恒定的，当水满的时候是会溢出的。<br><img src="/.com//16458387775318/16460271640922.jpg"></p>
+<p>虽然滑动窗口有效避免了时间临界点的问题，但是依然有时间片的概念，而漏桶算法在这方面比滑动窗口而言，更加先进。<br>有一个固定的桶，进水的速率是不确定的，但是出水的速率是恒定的，当水满的时候是会溢出的。<br><img src="/2022/03/26/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/16460271640922.jpg"></p>
 <p><strong>局限性：</strong></p>
 <p>生成令牌的速度是恒定的，而请求去拿令牌是没有速度限制的。这意味，面对瞬时大流量，该算法可以在短时间内请求拿到大量令牌，而且拿令牌的过程并不是消耗很大的事情。（有一点生产令牌，消费令牌的意味）<br>不论是对于令牌桶拿不到令牌被拒绝，还是漏桶的水满了溢出，都是为了保证大部分流量的正常使用，而牺牲掉了少部分流量，这是合理的，如果因为极少部分流量需要保证的话，那么就可能导致系统达到极限而挂掉，得不偿失。</p>
-<h3 id="浏览器访问-www-baidu-com-的过程"><a href="#浏览器访问-www-baidu-com-的过程" class="headerlink" title="浏览器访问 www.baidu.com 的过程"></a>浏览器访问 <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a> 的过程</h3><ol>
-<li>浏览器向DNS服务器发出解析域名的请求；</li>
-<li>DNS服务器将”<a target="_blank" rel="noopener" href="http://www.baidu.com&quot;域名解析为对应的ip地址,并返回给浏览器;/">www.baidu.com&quot;域名解析为对应的IP地址，并返回给浏览器；</a></li>
-<li>浏览器与百度服务器进行三次握手，建立TCP连接；</li>
-<li>浏览器发出HTTP请求报文；</li>
-<li>服务器回复HTTP响应报文；</li>
-<li>浏览器解析响应报文，渲染HTML内容，并显示在页面上；</li>
-<li>收发报文结束，释放TCP连接，执行四次挥手。</li>
-</ol>
-<h3 id="TCP三次握手-建立连接"><a href="#TCP三次握手-建立连接" class="headerlink" title="TCP三次握手 建立连接"></a>TCP三次握手 建立连接</h3><p>在TCP&#x2F;IP协议中,TCP协议提供可靠的连接服务,采用三次握手建立一个连接.</p>
-<p>第一次握手：Client将标志位SYN置为1，随机产生一个值seq&#x3D;J，并将该数据包发送给Server，Client进入SYN_SENT状态，等待Server确认。</p>
-<p>SYN：同步序列编号(Synchronize Sequence Numbers)</p>
-<p>第二次握手：Server收到数据包后由标志位SYN&#x3D;1知道Client请求建立连接，Server将标志位SYN和ACK都置为1，ack&#x3D;J+1，随机产生一个值seq&#x3D;K，并将该数据包发送给Client以确认连接请求，Server进入SYN_RCVD状态。</p>
-<p>第三次握手：Client收到确认后，检查ack是否为J+1，ACK是否为1，如果正确则将标志位ACK置为1，ack&#x3D;K+1，并将该数据包发送给Server，Server检查ack是否为K+1，ACK是否为1，如果正确则连接建立成功，Client和Server进入ESTABLISHED状态，完成三次握手，随后Client与Server之间可以开始传输数据了。<br><img src="/.com//16458387775318/16458401256437.jpg"></p>
-<h3 id="TCP四次挥手"><a href="#TCP四次挥手" class="headerlink" title="TCP四次挥手"></a>TCP四次挥手</h3><p>1.第一次挥手：Client发送一个FIN，用来关闭Client到Server的数据传送，Client进入FIN_WAIT_1状态。</p>
-<p>2.第二次挥手：Server收到FIN后，发送一个ACK给Client，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），Server进入CLOSE_WAIT状态。</p>
-<p>3.第三次挥手：Server发送一个FIN，用来关闭Server到Client的数据传送，Server进入LAST_ACK状态。</p>
-<p>4.第四次挥手：Client收到FIN后，Client进入TIME_WAIT状态，接着发送一个ACK给Server，确认序号为收到序号+1， Server进入CLOSED状态，完成四次挥手。<br><img src="/.com//16458387775318/16458406664471.jpg"></p>
 <h3 id="IO-多路复用"><a href="#IO-多路复用" class="headerlink" title="IO 多路复用"></a>IO 多路复用</h3><h4 id="同步阻塞"><a href="#同步阻塞" class="headerlink" title="同步阻塞"></a>同步阻塞</h4><p>select，poll，epoll都是IO多路复用的机制。I&#x2F;O多路复用就是通过一种机制，一个进程可以监视多个描述符，一旦某个描述符就绪（一般是读就绪或者写就绪），能够通知程序进行相应的读写操作。但select，poll，epoll本质上都是同步I&#x2F;O，因为他们都需要在读写事件就绪后自己负责进行读写，也就是说这个读写过程是阻塞的，而异步I&#x2F;O则无需自己负责进行读写，异步I&#x2F;O的实现会负责把数据从内核拷贝到用户空间。</p>
 <p><strong>Select、Poll与Epoll区别</strong></p>
 <table>
@@ -238,14 +244,14 @@
 </ol>
 <h4 id="制作数字签名时需要hash一次？"><a href="#制作数字签名时需要hash一次？" class="headerlink" title="制作数字签名时需要hash一次？"></a>制作数字签名时需要hash一次？</h4><p>最显然的是性能问题，前面我们已经说了非对称加密效率较差，证书信息一般较长，比较耗时。而hash后得到的是固定长度的信息（比如用md5算法hash后可以得到固定的128位的值），这样加解密就快很多。</p>
 <h4 id="每次进行HTTPS请求时都必须在SSL-x2F-TLS层（http的安全层）进行握手传输密钥吗？"><a href="#每次进行HTTPS请求时都必须在SSL-x2F-TLS层（http的安全层）进行握手传输密钥吗？" class="headerlink" title="每次进行HTTPS请求时都必须在SSL&#x2F;TLS层（http的安全层）进行握手传输密钥吗？"></a>每次进行HTTPS请求时都必须在SSL&#x2F;TLS层（http的安全层）进行握手传输密钥吗？</h4><p>服务器会为每个浏览器（或客户端软件）维护一个session ID，在TLS握手阶段传给浏览器，浏览器生成好密钥传给服务器后，服务器会把该密钥存到相应的session ID下，之后浏览器每次请求都会携带session ID，服务器会根据session ID找到相应的密钥并进行解密加密操作，这样就不必要每次重新制作、传输密钥了！</p>
-<p><img src="/.com//16458387775318/16459593650116.jpg"></p>
+<p><img src="/2022/03/26/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/16459593650116.jpg"></p>
 <h3 id="Linux根据文件路径查找索引节点"><a href="#Linux根据文件路径查找索引节点" class="headerlink" title="Linux根据文件路径查找索引节点"></a>Linux根据文件路径查找索引节点</h3><p>查找时，会遍历路径的过程中，会逐层地将各个路径组成部分解析成目录项对象。如果此目录项对象在目录项缓存中，则直接从缓存中获取；如果该目录项在缓存中不存在，则进行一次实际的读盘操作，从磁盘中读取该目录项所对应的索引节点。得到索引节点之后，则建立索引节点与该目录项的联系。如此循环，直到找到目标文件对于的目录项，也就找到了索引节点，而由索引节点找到对应的超级块对象，就可知道该文件所在的文件系统的类型。</p>
 <h3 id="进程创建时文件的复制与共享"><a href="#进程创建时文件的复制与共享" class="headerlink" title="进程创建时文件的复制与共享"></a>进程创建时文件的复制与共享</h3><p>当一个进程系统调用fork()创建一个子进程时，fork()将调用内核函数do_fork()对父进程的进程控制块进行复制，并将这个副本作为子进程的控制块。如果父进程有已经打开的文件，那么子进程理所当然的按某种方式来继承这些文件</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/26/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/" data-id="cl190suen00082m9k17wyfazr" data-title="网络基础" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/03/26/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/" data-id="cl19cq9vk001sw89kcviy4he1" data-title="网络基础" class="article-share-link">Share</a>
       
       
       
@@ -265,9 +271,9 @@
     </a>
   
   
-    <a href="/2022/03/26/%E6%95%B0%E6%8D%AE%E5%BA%93/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/03/26/%E7%AE%97%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">数据库</div>
+      <div class="article-nav-title">算法</div>
     </a>
   
 </nav>
@@ -334,15 +340,15 @@
           </li>
         
           <li>
-            <a href="/2022/03/26/Redis/">Redis</a>
-          </li>
-        
-          <li>
             <a href="/2022/03/26/kafka/">Kafka</a>
           </li>
         
           <li>
-            <a href="/2022/03/26/%E6%9E%B6%E6%9E%84/">架构</a>
+            <a href="/2022/03/26/Redis/">Redis</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/26/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
           </li>
         
       </ul>

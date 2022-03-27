@@ -13,13 +13,13 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="面试题声明一个变量占几个字节16个字节 php是怎么实现弱类型zval_struct中的zval_value底层会声明联合体（字符串、bool、int强类型声明） zend string写时复制当一个变量赋值给另一个变量时，不会直接在存储中复制一份，只会新增一个引用，指向变量的地址空间；当变量发生变更时，才会在存储中复制一份新的。优点：这样能够节省空间，避免空间的浪费。 php垃圾回收机制变量在z">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/.com//16482623613635/16482643996275.jpg">
-<meta property="og:image" content="http://example.com/.com//16482933570726.jpg">
+<meta property="og:image" content="http://example.com/2022/03/26/PHP/16482643996275.jpg">
+<meta property="og:image" content="http://example.com/2022/03/26/PHP/16482933570726.jpg">
 <meta property="article:published_time" content="2022-03-26T08:50:16.000Z">
-<meta property="article:modified_time" content="2022-03-27T07:16:11.916Z">
+<meta property="article:modified_time" content="2022-03-27T13:51:25.732Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/.com//16482623613635/16482643996275.jpg">
+<meta name="twitter:image" content="http://example.com/2022/03/26/PHP/16482643996275.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -101,7 +101,7 @@
         <h3 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h3><h4 id="声明一个变量占几个字节"><a href="#声明一个变量占几个字节" class="headerlink" title="声明一个变量占几个字节"></a>声明一个变量占几个字节</h4><p>16个字节</p>
 <h4 id="php是怎么实现弱类型"><a href="#php是怎么实现弱类型" class="headerlink" title="php是怎么实现弱类型"></a>php是怎么实现弱类型</h4><p>zval_struct中的zval_value底层会声明联合体（字符串、bool、int强类型声明）</p>
 <h4 id="zend-string写时复制"><a href="#zend-string写时复制" class="headerlink" title="zend string写时复制"></a>zend string写时复制</h4><p>当一个变量赋值给另一个变量时，不会直接在存储中复制一份，只会新增一个引用，指向变量的地址空间；当变量发生变更时，才会在存储中复制一份新的。<br>优点：这样能够节省空间，避免空间的浪费。</p>
-<h4 id="php垃圾回收机制"><a href="#php垃圾回收机制" class="headerlink" title="php垃圾回收机制"></a>php垃圾回收机制</h4><h5 id="变量在zval的变量容器中结构"><a href="#变量在zval的变量容器中结构" class="headerlink" title="变量在zval的变量容器中结构"></a>变量在zval的变量容器中结构</h5><p><img src="/.com//16482623613635/16482643996275.jpg"></p>
+<h4 id="php垃圾回收机制"><a href="#php垃圾回收机制" class="headerlink" title="php垃圾回收机制"></a>php垃圾回收机制</h4><h5 id="变量在zval的变量容器中结构"><a href="#变量在zval的变量容器中结构" class="headerlink" title="变量在zval的变量容器中结构"></a>变量在zval的变量容器中结构</h5><p><img src="/2022/03/26/PHP/16482643996275.jpg"></p>
 <blockquote>
 <p>zval中，除了存储变量的类型和值之外，还有is_ref字段和refcount字段<br>    1、is_ref：是个bool值，用来区分变量是否属于引用集合。<br>    2、refcount：计数器，表示指向这个zval变量容器的变量个数。</p>
 </blockquote>
@@ -138,7 +138,7 @@
 </ol>
 <p>进程有需要时才产生，由dynamic相反，pm&#x3D;start_servers在服务启动时即启动。</p>
 <p>这种模式把内存放到第一位，它的工作模式很简单，每个闲置进程在持续闲置了pm.process_idle_timeout秒后就会被杀掉，有了这个模式，到了服务器低峰期内存会自动降下来，如果服务器长时间没有请求，就只有一个PHP-FPM主进程，当然弊端是，遇到高峰期或者如果pm.process_idle_timeout的值太短的话，无法避免服务器重复创建进程的问题，因此pm&#x3D;dynamic和pm&#x3D;ondemand谁更合适视情况而定。</p>
-<h4 id="PHP-FPM-生命周期"><a href="#PHP-FPM-生命周期" class="headerlink" title="PHP-FPM 生命周期"></a>PHP-FPM 生命周期</h4><p>以nginx服务器为例，在web模式下，生命周期流程如下<br><img src="/.com//16482933570726.jpg"></p>
+<h4 id="PHP-FPM-生命周期"><a href="#PHP-FPM-生命周期" class="headerlink" title="PHP-FPM 生命周期"></a>PHP-FPM 生命周期</h4><p>以nginx服务器为例，在web模式下，生命周期流程如下<br><img src="/2022/03/26/PHP/16482933570726.jpg"></p>
 <p>SAPI运行PHP都经过下面几个阶段:<br>1、模块初始化阶段（module init）：<br>这个阶段主要进行php框架、zend引擎的初始化操作。这个阶段一般是在SAPI启动时执行一次，对于FPM而言，就是在fpm的master进行启动时执行的。php加载每个扩展的代码并调用其模块初始化例程（MINIT），进行一些模块所需变量的申请,内存分配等。</p>
 <p>2、请求初始化阶段（request init）：<br>当一个页面请求发生时，在请求处理前都会经历的一个阶段。对于fpm而言，是在worker进程accept一个请求并读取、解析完请求数据后的一个阶段。在这个阶段内，SAPI层将控制权交给PHP层，PHP初始化本次请求执行脚本所需的环境变量。</p>
 <p>3、php脚本执行阶段<br>php代码解析执行的过程。Zend引擎接管控制权，将php脚本代码编译成opcodes并顺次执行</p>
@@ -148,7 +148,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/26/PHP/" data-id="cl190suej00012m9kd47y2n8j" data-title="PHP" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/03/26/PHP/" data-id="cl19cq9vc0005w89kg4aob1kw" data-title="PHP" class="article-share-link">Share</a>
       
       
       
@@ -168,9 +168,9 @@
     </a>
   
   
-    <a href="/2022/03/26/Redis/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/03/26/kafka/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Redis</div>
+      <div class="article-nav-title">Kafka</div>
     </a>
   
 </nav>
@@ -237,15 +237,15 @@
           </li>
         
           <li>
-            <a href="/2022/03/26/Redis/">Redis</a>
-          </li>
-        
-          <li>
             <a href="/2022/03/26/kafka/">Kafka</a>
           </li>
         
           <li>
-            <a href="/2022/03/26/%E6%9E%B6%E6%9E%84/">架构</a>
+            <a href="/2022/03/26/Redis/">Redis</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/26/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
           </li>
         
       </ul>

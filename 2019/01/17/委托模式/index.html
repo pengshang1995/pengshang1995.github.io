@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>委托模式 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="概念通过分配或委托至其他对象，委托模式能够去除核心对象中的判决和复杂的功能性。 实现场景添加音乐、并且根据音乐类型获取不同的音乐列表（返回字段形式均不一样） 使用委托模式 VS 基本实现 （UML）使用基本实现方式调用时，需要if-else的判断，并且音乐类型不断增加，会导致PlayList类无限扩大。但是使用委托模式，在初始化类时，已经声明音乐类型$type,例如M3U，根据类型找到M3UPla">
+<meta property="og:type" content="article">
+<meta property="og:title" content="委托模式">
+<meta property="og:url" content="http://example.com/2019/01/17/%E5%A7%94%E6%89%98%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="概念通过分配或委托至其他对象，委托模式能够去除核心对象中的判决和复杂的功能性。 实现场景添加音乐、并且根据音乐类型获取不同的音乐列表（返回字段形式均不一样） 使用委托模式 VS 基本实现 （UML）使用基本实现方式调用时，需要if-else的判断，并且音乐类型不断增加，会导致PlayList类无限扩大。但是使用委托模式，在初始化类时，已经声明音乐类型$type,例如M3U，根据类型找到M3UPla">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://ps-blog.oss-cn-beijing.aliyuncs.com/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.jpg">
+<meta property="article:published_time" content="2019-01-17T03:22:53.000Z">
+<meta property="article:modified_time" content="2019-01-18T06:36:16.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="委托模式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ps-blog.oss-cn-beijing.aliyuncs.com/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-委托模式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/01/17/%E5%A7%94%E6%89%98%E6%A8%A1%E5%BC%8F/" class="article-date">
+  <time class="dt-published" datetime="2019-01-17T03:22:53.000Z" itemprop="datePublished">2019-01-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      委托模式
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>通过分配或委托至其他对象，委托模式能够去除核心对象中的判决和复杂的功能性。</p>
+<h3 id="实现场景"><a href="#实现场景" class="headerlink" title="实现场景"></a>实现场景</h3><p>添加音乐、并且根据音乐类型获取不同的音乐列表（返回字段形式均不一样）</p>
+<h3 id="使用委托模式-VS-基本实现-（UML）"><a href="#使用委托模式-VS-基本实现-（UML）" class="headerlink" title="使用委托模式 VS 基本实现 （UML）"></a>使用委托模式 VS 基本实现 （UML）</h3><p><img src="http://ps-blog.oss-cn-beijing.aliyuncs.com/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.jpg"><br>使用基本实现方式调用时，需要if-else的判断，并且音乐类型不断增加，会导致PlayList类无限扩大。但是使用委托模式，在初始化类时，已经声明音乐类型$type,例如M3U，根据类型找到M3UPlaySong类，其余的查询列表均在委托类中进行实现。</p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">class Playlist</span><br><span class="line">&#123;</span><br><span class="line">    private $_song;</span><br><span class="line"></span><br><span class="line">    public function __construct()</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;_song = [];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function addSong($location, $title)</span><br><span class="line">    &#123;</span><br><span class="line">        $song = [&#x27;loc&#x27;=&gt;$location,&#x27;title&#x27;=&gt;$title];</span><br><span class="line">        $this-&gt;_song[] = $song;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function getM3UList() &#123;</span><br><span class="line">        $m3u = &quot;#M3U#\n&quot;;</span><br><span class="line"></span><br><span class="line">        foreach ($this-&gt;_song as $song) &#123;</span><br><span class="line">            $m3u .= &quot;音乐位置&quot;.$song[&#x27;loc&#x27;];</span><br><span class="line">            $m3u .= &quot;音乐名称&quot;.$song[&#x27;title&#x27;];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return $m3u;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function getPLSList() &#123;</span><br><span class="line">        $m3u = &quot;#PLS#\n&quot;;</span><br><span class="line"></span><br><span class="line">        foreach ($this-&gt;_song as $song) &#123;</span><br><span class="line">            $m3u .= &quot;music loc&quot;.$song[&#x27;loc&#x27;];</span><br><span class="line">            $m3u .= &quot;music title&quot;.$song[&#x27;title&#x27;];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return $m3u;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$obj = new Playlist();</span><br><span class="line">$obj-&gt;addSong(&#x27;ssss&#x27;,&#x27;every&#x27;);</span><br><span class="line">$obj-&gt;addSong(&#x27;dsdsda&#x27;,&#x27;one&#x27;);</span><br><span class="line"></span><br><span class="line">$ext = &#x27;m3u&#x27;;</span><br><span class="line">if ($ext == &#x27;m3u&#x27;) &#123;</span><br><span class="line">    var_dump($obj-&gt;getM3UList());</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    var_dump($obj-&gt;getPLSList());</span><br><span class="line">&#125;</span><br><span class="line">echo &quot;\n&quot;;</span><br><span class="line">class NewPlaySong &#123;</span><br><span class="line">    private $_song;</span><br><span class="line">    private $_SongType;</span><br><span class="line">    public function __construct($type)</span><br><span class="line">    &#123;</span><br><span class="line">         $this-&gt;_song =[];</span><br><span class="line">         $song_type = strtoupper($type).&#x27;PlaySong&#x27;;</span><br><span class="line">         $this-&gt;_SongType = new $song_type ();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function addSong($location, $title)</span><br><span class="line">    &#123;</span><br><span class="line">        $song = [&#x27;loc&#x27;=&gt;$location,&#x27;title&#x27;=&gt;$title];</span><br><span class="line">        $this-&gt;_song[] = $song;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function getPlayList() &#123;</span><br><span class="line">        $play_list = $this-&gt;_SongType-&gt;getPlayList($this-&gt;_song);</span><br><span class="line">        return $play_list;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class M3UPlaySong &#123;</span><br><span class="line">    public function getPlayList($song_list) &#123;</span><br><span class="line">        $m3u = &quot;#M3U#\n&quot;;</span><br><span class="line"></span><br><span class="line">        foreach ($song_list as $song) &#123;</span><br><span class="line">            $m3u .= &quot;音乐位置&quot;.$song[&#x27;loc&#x27;];</span><br><span class="line">            $m3u .= &quot;音乐名称&quot;.$song[&#x27;title&#x27;];</span><br><span class="line">        &#125;</span><br><span class="line">        return $m3u;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$obj = new NewPlaySong(&#x27;m3u&#x27;);</span><br><span class="line">$obj-&gt;addSong(&#x27;ssss&#x27;,&#x27;every&#x27;);</span><br><span class="line">$obj-&gt;addSong(&#x27;dsdsda&#x27;,&#x27;one&#x27;);</span><br><span class="line"></span><br><span class="line">var_dump($obj-&gt;getPlayList());</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/01/17/%E5%A7%94%E6%89%98%E6%A8%A1%E5%BC%8F/" data-id="cl19cq9vg000lw89kdydy1o6j" data-title="委托模式" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A7%94%E6%89%98%E6%A8%A1%E5%BC%8F/" rel="tag">委托模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/12/%E4%BB%80%E4%B9%88%E6%98%AF%E5%8D%95%E4%BD%93%E5%BA%94%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          什么是单体应用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/01/10/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">适配器模式（Adapter Design Pattern）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85/">编译安装</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP%E6%89%A9%E5%B1%95/" rel="tag">PHP扩展</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP&#x2F;IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/" rel="tag">主从复制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" rel="tag">单例模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A7%94%E6%89%98%E6%A8%A1%E5%BC%8F/" rel="tag">委托模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82/" rel="tag">抽象工厂</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag">排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84/" rel="tag">最大子数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/" rel="tag">适配器模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%9F%E5%88%97/" rel="tag">队列</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JS/" style="font-size: 10px;">JS</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/PHP/" style="font-size: 20px;">PHP</a> <a href="/tags/PHP%E6%89%A9%E5%B1%95/" style="font-size: 10px;">PHP扩展</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/" style="font-size: 10px;">主从复制</a> <a href="/tags/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">单例模式</a> <a href="/tags/%E5%A7%94%E6%89%98%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">委托模式</a> <a href="/tags/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82/" style="font-size: 10px;">抽象工厂</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 20px;">排序</a> <a href="/tags/%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84/" style="font-size: 10px;">最大子数组</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 20px;">设计模式</a> <a href="/tags/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">适配器模式</a> <a href="/tags/%E9%98%9F%E5%88%97/" style="font-size: 10px;">队列</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/26/Go/">Go</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/26/PHP/">PHP</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/26/kafka/">Kafka</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/26/Redis/">Redis</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/26/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
